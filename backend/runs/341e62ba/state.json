@@ -1,0 +1,585 @@
+{
+  "status": "COMPLETED",
+  "meta": {
+    "summary": "The regression task successfully identified the GradientBoostingRegressor as the best model based on RMSE performance.",
+    "run_id": "341e62ba",
+    "target": "SALES",
+    "task_type": "regression",
+    "primary_metric": "RMSE",
+    "score_direction": "minimize",
+    "profile": {
+      "rows": 2823,
+      "columns": 25,
+      "feature_columns": [
+        "ORDERNUMBER",
+        "QUANTITYORDERED",
+        "PRICEEACH",
+        "ORDERLINENUMBER",
+        "ORDERDATE",
+        "STATUS",
+        "QTR_ID",
+        "MONTH_ID",
+        "YEAR_ID",
+        "PRODUCTLINE",
+        "MSRP",
+        "PRODUCTCODE",
+        "CUSTOMERNAME",
+        "PHONE",
+        "ADDRESSLINE1",
+        "ADDRESSLINE2",
+        "CITY",
+        "STATE",
+        "POSTALCODE",
+        "COUNTRY",
+        "TERRITORY",
+        "CONTACTLASTNAME",
+        "CONTACTFIRSTNAME",
+        "DEALSIZE"
+      ],
+      "numeric_columns": [
+        "ORDERNUMBER",
+        "QUANTITYORDERED",
+        "PRICEEACH",
+        "ORDERLINENUMBER",
+        "QTR_ID",
+        "MONTH_ID",
+        "YEAR_ID",
+        "MSRP"
+      ],
+      "categorical_columns": [
+        "ORDERDATE",
+        "STATUS",
+        "PRODUCTLINE",
+        "PRODUCTCODE",
+        "CUSTOMERNAME",
+        "PHONE",
+        "ADDRESSLINE1",
+        "ADDRESSLINE2",
+        "CITY",
+        "STATE",
+        "POSTALCODE",
+        "COUNTRY",
+        "TERRITORY",
+        "CONTACTLASTNAME",
+        "CONTACTFIRSTNAME",
+        "DEALSIZE"
+      ],
+      "task_type": "regression",
+      "target_unique_values": 2763,
+      "target_missing_rows_removed": 0,
+      "class_distribution": {},
+      "missing_by_column": {
+        "ADDRESSLINE2": 0.8930216082182075,
+        "STATE": 0.526390364860078,
+        "POSTALCODE": 0.026921714488133193,
+        "TERRITORY": 0.3804463336875664
+      },
+      "analysis_summary": "The target variable 'SALES' is a continuous numeric quantity with a unique count of 2763, indicating a wide range of values. Given the nature of the target, the task is framed as a regression problem. The recommended metric for evaluating model performance is RMSE, which is suitable for continuous outputs.",
+      "data_risks": [
+        "Potential outliers in the SALES data could skew model predictions.",
+        "High missing ratio in ADDRESSLINE2 and STATE columns may affect feature quality."
+      ]
+    },
+    "analysis": {
+      "task_type": "regression",
+      "recommended_metric": "RMSE",
+      "analysis_summary": "The target variable 'SALES' is a continuous numeric quantity with a unique count of 2763, indicating a wide range of values. Given the nature of the target, the task is framed as a regression problem. The recommended metric for evaluating model performance is RMSE, which is suitable for continuous outputs.",
+      "data_risks": [
+        "Potential outliers in the SALES data could skew model predictions.",
+        "High missing ratio in ADDRESSLINE2 and STATE columns may affect feature quality."
+      ],
+      "candidate_models": [
+        "LinearRegression",
+        "RandomForestRegressor",
+        "GradientBoostingRegressor",
+        "HistGradientBoostingRegressor",
+        "AdaBoostRegressor",
+        "ExtraTreesRegressor"
+      ]
+    },
+    "plan": {
+      "task_type": "regression",
+      "date_columns": [
+        "ORDERDATE"
+      ],
+      "drop_columns": [
+        "ORDERNUMBER",
+        "QTR_ID",
+        "MONTH_ID",
+        "YEAR_ID",
+        "MSRP",
+        "CUSTOMERNAME",
+        "PHONE",
+        "ADDRESSLINE1",
+        "ADDRESSLINE2",
+        "CONTACTLASTNAME",
+        "CONTACTFIRSTNAME",
+        "ORDERDATE",
+        "POSTALCODE"
+      ],
+      "missing_indicator_columns": [
+        "STATE"
+      ],
+      "preprocessing": {
+        "scaling": "standard",
+        "class_weight": "none",
+        "stratify_split": false,
+        "reasoning": [
+          "The task is regression, so class weighting and stratification are not applicable.",
+          "Standard scaling is chosen for its effectiveness with normally distributed data."
+        ]
+      },
+      "feature_engineering_reasoning": [
+        "ORDERDATE is a date column and will be expanded.",
+        "Dropping columns with identifiers, names, and high cardinality features to reduce noise.",
+        "Dropped ORDERNUMBER because postal/ZIP-style codes are unsafe as raw regression features.",
+        "Dropped ORDERDATE because the tool marked it as free text that would degrade one-hot encoding.",
+        "Dropped QTR_ID because the tool marked it as an identifier-like column.",
+        "Dropped MONTH_ID because the tool marked it as an identifier-like column.",
+        "Dropped YEAR_ID because the tool marked it as an identifier-like column.",
+        "Dropped MSRP because the tool marked it as a row counter / index feature.",
+        "Dropped CUSTOMERNAME because the tool marked it as a name-like field with weak predictive semantics.",
+        "Dropped PHONE because the tool marked it as free text that would degrade one-hot encoding.",
+        "Dropped ADDRESSLINE1 because the tool marked it as free text that would degrade one-hot encoding.",
+        "Dropped ADDRESSLINE2 because the tool marked it as free text that would degrade one-hot encoding.",
+        "Dropped POSTALCODE because postal/ZIP-style codes are unsafe as raw regression features.",
+        "Dropped CONTACTLASTNAME because the tool marked it as a name-like field with weak predictive semantics.",
+        "Dropped CONTACTFIRSTNAME because the tool marked it as a name-like field with weak predictive semantics."
+      ],
+      "modeling_reasoning": [
+        "Selected models are suitable for regression tasks.",
+        "Diverse models chosen to capture different patterns in the data."
+      ],
+      "candidate_models": [
+        "LinearRegression",
+        "RandomForestRegressor",
+        "GradientBoostingRegressor",
+        "HistGradientBoostingRegressor",
+        "ExtraTreesRegressor"
+      ],
+      "primary_metric": "RMSE",
+      "score_direction": "minimize",
+      "trainer_execution_reasoning": [
+        "The task is regression, and RMSE is the recommended metric for evaluating model performance.",
+        "Refined candidate models to include only those that are diverse and suitable for regression tasks."
+      ]
+    },
+    "report": {
+      "summary": "The regression task successfully identified the GradientBoostingRegressor as the best model based on RMSE performance.",
+      "model_summary": "The GradientBoostingRegressor outperformed other models with the lowest RMSE of 605.60, indicating its superior ability to minimize prediction errors for the continuous target variable 'SALES'.",
+      "reasoning_summary": [
+        "Key preprocessing included standard scaling, which improved model performance by normalizing the feature distributions.",
+        "Feature engineering focused on dropping irrelevant and high cardinality features, allowing the model to focus on the most predictive variables."
+      ],
+      "caution": "The presence of potential outliers in the SALES data may still skew predictions despite the model's performance."
+    },
+    "results": [
+      {
+        "model": "LinearRegression",
+        "score": 686.5988914139275,
+        "R2": 0.891997731800693,
+        "RMSE": 686.5988914139275,
+        "MAE": 442.4377097439339,
+        "MSE": 471418.03769083426
+      },
+      {
+        "model": "RandomForestRegressor",
+        "score": 670.9155113518508,
+        "R2": 0.8968753835947243,
+        "RMSE": 670.9155113518508,
+        "MAE": 316.59436311504425,
+        "MSE": 450127.6233725155
+      },
+      {
+        "model": "GradientBoostingRegressor",
+        "score": 605.6042681975078,
+        "R2": 0.9159757711560879,
+        "RMSE": 605.6042681975078,
+        "MAE": 347.27448007633774,
+        "MSE": 366756.529659039
+      },
+      {
+        "model": "HistGradientBoostingRegressor",
+        "score": 652.1289331148196,
+        "R2": 0.9025697944636165,
+        "RMSE": 652.1289331148196,
+        "MAE": 341.1435273834878,
+        "MSE": 425272.1454054728
+      },
+      {
+        "model": "ExtraTreesRegressor",
+        "score": 720.6793914773599,
+        "R2": 0.8810098842594399,
+        "RMSE": 720.6793914773599,
+        "MAE": 330.5749107374629,
+        "MSE": 519378.7853001777
+      }
+    ],
+    "best_model": "GradientBoostingRegressor",
+    "best_metrics": {
+      "score": 605.6042681975078,
+      "R2": 0.9159757711560879,
+      "RMSE": 605.6042681975078,
+      "MAE": 347.27448007633774,
+      "MSE": 366756.529659039
+    },
+    "features": [
+      "QUANTITYORDERED",
+      "PRICEEACH",
+      "ORDERLINENUMBER",
+      "STATUS",
+      "PRODUCTLINE",
+      "PRODUCTCODE",
+      "CITY",
+      "STATE",
+      "COUNTRY",
+      "TERRITORY",
+      "DEALSIZE"
+    ],
+    "feature_schema": [
+      {
+        "name": "QUANTITYORDERED",
+        "nullable": false,
+        "sample_values": [
+          "30",
+          "34",
+          "41"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 35.0,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "PRICEEACH",
+        "nullable": false,
+        "sample_values": [
+          "95.7",
+          "81.35",
+          "94.74"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 95.7,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "ORDERLINENUMBER",
+        "nullable": false,
+        "sample_values": [
+          "2",
+          "5",
+          "2"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 6.0,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "STATUS",
+        "nullable": false,
+        "sample_values": [
+          "Shipped",
+          "Shipped",
+          "Shipped"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Shipped",
+        "options": [
+          "Cancelled",
+          "Disputed",
+          "In Process",
+          "On Hold",
+          "Resolved",
+          "Shipped"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "PRODUCTLINE",
+        "nullable": false,
+        "sample_values": [
+          "Motorcycles",
+          "Motorcycles",
+          "Motorcycles"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Classic Cars",
+        "options": [
+          "Classic Cars",
+          "Motorcycles",
+          "Planes",
+          "Ships",
+          "Trains",
+          "Trucks and Buses",
+          "Vintage Cars"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "PRODUCTCODE",
+        "nullable": false,
+        "sample_values": [
+          "S10_1678",
+          "S10_1678",
+          "S10_1678"
+        ],
+        "kind": "text",
+        "dtype": "text",
+        "default": "S18_3232",
+        "help": "Free-text categorical value. Unseen values are handled safely."
+      },
+      {
+        "name": "CITY",
+        "nullable": false,
+        "sample_values": [
+          "NYC",
+          "Reims",
+          "Paris"
+        ],
+        "kind": "text",
+        "dtype": "text",
+        "default": "Madrid",
+        "help": "Free-text categorical value. Unseen values are handled safely."
+      },
+      {
+        "name": "STATE",
+        "nullable": true,
+        "sample_values": [
+          "NY",
+          "CA",
+          "CA"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "CA",
+        "options": [
+          "BC",
+          "CA",
+          "CT",
+          "Isle of Wight",
+          "MA",
+          "NH",
+          "NJ",
+          "NSW",
+          "NV",
+          "NY",
+          "Osaka",
+          "PA",
+          "Quebec",
+          "Queensland",
+          "Tokyo",
+          "Victoria"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "COUNTRY",
+        "nullable": false,
+        "sample_values": [
+          "USA",
+          "France",
+          "France"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "USA",
+        "options": [
+          "Australia",
+          "Austria",
+          "Belgium",
+          "Canada",
+          "Denmark",
+          "Finland",
+          "France",
+          "Germany",
+          "Ireland",
+          "Italy",
+          "Japan",
+          "Norway",
+          "Philippines",
+          "Singapore",
+          "Spain",
+          "Sweden",
+          "Switzerland",
+          "UK",
+          "USA"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "TERRITORY",
+        "nullable": true,
+        "sample_values": [
+          "EMEA",
+          "EMEA",
+          "EMEA"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "EMEA",
+        "options": [
+          "APAC",
+          "EMEA",
+          "Japan"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "DEALSIZE",
+        "nullable": false,
+        "sample_values": [
+          "Small",
+          "Small",
+          "Medium"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Medium",
+        "options": [
+          "Large",
+          "Medium",
+          "Small"
+        ],
+        "help": "Choose one of the categories observed during training."
+      }
+    ],
+    "categorical_options": {
+      "STATUS": [
+        "Cancelled",
+        "Disputed",
+        "In Process",
+        "On Hold",
+        "Resolved",
+        "Shipped"
+      ],
+      "PRODUCTLINE": [
+        "Classic Cars",
+        "Motorcycles",
+        "Planes",
+        "Ships",
+        "Trains",
+        "Trucks and Buses",
+        "Vintage Cars"
+      ],
+      "STATE": [
+        "BC",
+        "CA",
+        "CT",
+        "Isle of Wight",
+        "MA",
+        "NH",
+        "NJ",
+        "NSW",
+        "NV",
+        "NY",
+        "Osaka",
+        "PA",
+        "Quebec",
+        "Queensland",
+        "Tokyo",
+        "Victoria"
+      ],
+      "COUNTRY": [
+        "Australia",
+        "Austria",
+        "Belgium",
+        "Canada",
+        "Denmark",
+        "Finland",
+        "France",
+        "Germany",
+        "Ireland",
+        "Italy",
+        "Japan",
+        "Norway",
+        "Philippines",
+        "Singapore",
+        "Spain",
+        "Sweden",
+        "Switzerland",
+        "UK",
+        "USA"
+      ],
+      "TERRITORY": [
+        "APAC",
+        "EMEA",
+        "Japan"
+      ],
+      "DEALSIZE": [
+        "Large",
+        "Medium",
+        "Small"
+      ]
+    },
+    "numeric_columns": [
+      "QUANTITYORDERED",
+      "PRICEEACH",
+      "ORDERLINENUMBER",
+      "STATE_was_missing"
+    ],
+    "categorical_columns": [
+      "STATUS",
+      "PRODUCTLINE",
+      "PRODUCTCODE",
+      "CITY",
+      "STATE",
+      "COUNTRY",
+      "TERRITORY",
+      "DEALSIZE"
+    ],
+    "top_features": [
+      {
+        "feature": "DEALSIZE_Small",
+        "importance": 0.4917843151639165
+      },
+      {
+        "feature": "PRICEEACH",
+        "importance": 0.16262189571566424
+      },
+      {
+        "feature": "QUANTITYORDERED",
+        "importance": 0.13140611819452858
+      },
+      {
+        "feature": "DEALSIZE_Large",
+        "importance": 0.10361074788429663
+      },
+      {
+        "feature": "DEALSIZE_Medium",
+        "importance": 0.08496611886883629
+      },
+      {
+        "feature": "PRODUCTCODE_S10_1949",
+        "importance": 0.0038645280121291465
+      },
+      {
+        "feature": "PRODUCTLINE_Classic Cars",
+        "importance": 0.0028920546648241977
+      },
+      {
+        "feature": "PRODUCTCODE_S10_4698",
+        "importance": 0.0020537981875386664
+      },
+      {
+        "feature": "PRODUCTCODE_S18_1662",
+        "importance": 0.0017086374322616512
+      },
+      {
+        "feature": "PRODUCTCODE_S12_1099",
+        "importance": 0.0013983694255316449
+      },
+      {
+        "feature": "ORDERLINENUMBER",
+        "importance": 0.0012901146884779894
+      },
+      {
+        "feature": "PRODUCTCODE_S18_3232",
+        "importance": 0.0012566228975047066
+      }
+    ]
+  }
+}

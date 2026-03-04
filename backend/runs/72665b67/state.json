@@ -1,0 +1,430 @@
+{
+  "status": "COMPLETED",
+  "meta": {
+    "summary": "The RandomForestClassifier achieved the highest F1 score of 0.8221, making it the best model for predicting loan approval status.",
+    "run_id": "72665b67",
+    "target": "Loan_Status",
+    "task_type": "classification",
+    "primary_metric": "F1",
+    "score_direction": "maximize",
+    "profile": {
+      "rows": 614,
+      "columns": 13,
+      "feature_columns": [
+        "Loan_ID",
+        "Gender",
+        "Married",
+        "Dependents",
+        "Education",
+        "Self_Employed",
+        "ApplicantIncome",
+        "CoapplicantIncome",
+        "LoanAmount",
+        "Loan_Amount_Term",
+        "Credit_History",
+        "Property_Area"
+      ],
+      "numeric_columns": [
+        "ApplicantIncome",
+        "CoapplicantIncome",
+        "LoanAmount",
+        "Loan_Amount_Term",
+        "Credit_History"
+      ],
+      "categorical_columns": [
+        "Loan_ID",
+        "Gender",
+        "Married",
+        "Dependents",
+        "Education",
+        "Self_Employed",
+        "Property_Area"
+      ],
+      "task_type": "classification",
+      "target_unique_values": 2,
+      "target_missing_rows_removed": 0,
+      "class_distribution": {
+        "Y": 422,
+        "N": 192
+      },
+      "missing_by_column": {
+        "Gender": 0.021172638436482084,
+        "Married": 0.004885993485342019,
+        "Dependents": 0.024429967426710098,
+        "Self_Employed": 0.05211726384364821,
+        "LoanAmount": 0.035830618892508145,
+        "Loan_Amount_Term": 0.02280130293159609,
+        "Credit_History": 0.08143322475570032
+      },
+      "analysis_summary": "The target variable 'Loan_Status' is categorical with two unique values ('Y' and 'N'), indicating a binary classification problem. The dataset contains a variety of features, including both categorical and numerical types, which can be leveraged for predicting loan approval status. The presence of some categorical features with a small number of unique values supports the classification framing.",
+      "data_risks": [
+        "Potential class imbalance as indicated by the distribution of 'Loan_Status' (422 'Y' vs 192 'N').",
+        "Missing values in features such as 'Self_Employed' and 'Credit_History' could affect model performance."
+      ]
+    },
+    "analysis": {
+      "task_type": "classification",
+      "recommended_metric": "F1",
+      "analysis_summary": "The target variable 'Loan_Status' is categorical with two unique values ('Y' and 'N'), indicating a binary classification problem. The dataset contains a variety of features, including both categorical and numerical types, which can be leveraged for predicting loan approval status. The presence of some categorical features with a small number of unique values supports the classification framing.",
+      "data_risks": [
+        "Potential class imbalance as indicated by the distribution of 'Loan_Status' (422 'Y' vs 192 'N').",
+        "Missing values in features such as 'Self_Employed' and 'Credit_History' could affect model performance."
+      ],
+      "candidate_models": [
+        "LogisticRegression",
+        "RandomForestClassifier",
+        "GradientBoostingClassifier"
+      ]
+    },
+    "plan": {
+      "task_type": "classification",
+      "date_columns": [],
+      "drop_columns": [
+        "Loan_ID",
+        "ApplicantIncome"
+      ],
+      "missing_indicator_columns": [
+        "Self_Employed",
+        "Credit_History"
+      ],
+      "preprocessing": {
+        "scaling": "standard",
+        "class_weight": "balanced",
+        "stratify_split": true,
+        "reasoning": [
+          "Class imbalance exists, so class weighting is applied to address it.",
+          "Stratification ensures that the train/test split maintains the distribution of the target variable."
+        ]
+      },
+      "feature_engineering_reasoning": [
+        "Dropping 'Loan_ID' as it looks like an identifier and is not predictive.",
+        "Dropping 'ApplicantIncome' due to high cardinality and potential risk flags.",
+        "Dropped Loan_ID because the tool marked it as an identifier-like column."
+      ],
+      "modeling_reasoning": [
+        "Selected models are suitable for binary classification tasks.",
+        "Chosen models are among the recommended candidates based on analysis."
+      ],
+      "candidate_models": [
+        "LogisticRegression",
+        "RandomForestClassifier",
+        "GradientBoostingClassifier"
+      ],
+      "primary_metric": "F1",
+      "score_direction": "maximize",
+      "trainer_execution_reasoning": [
+        "The task is a binary classification problem, and F1 is the recommended metric.",
+        "The selected models are suitable for the classification task and are among the recommended candidates."
+      ]
+    },
+    "report": {
+      "summary": "The RandomForestClassifier achieved the highest F1 score of 0.8221, making it the best model for predicting loan approval status.",
+      "model_summary": "The RandomForestClassifier outperformed other models due to its ability to handle class imbalance effectively and capture complex interactions between features, leading to a higher F1 score.",
+      "reasoning_summary": [
+        "Class weighting was applied to address potential class imbalance, enhancing model performance.",
+        "Key features such as 'LoanAmount' and 'Credit_History' significantly contributed to the model's predictive power."
+      ],
+      "caution": "The presence of missing values in critical features like 'Self_Employed' and 'Credit_History' may still impact the model's performance in real-world applications."
+    },
+    "results": [
+      {
+        "model": "LogisticRegression",
+        "score": 0.8211382113821138,
+        "Accuracy": 0.8211382113821138,
+        "Precision": 0.8211382113821138,
+        "Recall": 0.8211382113821138,
+        "F1": 0.8211382113821138
+      },
+      {
+        "model": "RandomForestClassifier",
+        "score": 0.8220933756073155,
+        "Accuracy": 0.8292682926829268,
+        "Precision": 0.825805701197144,
+        "Recall": 0.8292682926829268,
+        "F1": 0.8220933756073155
+      },
+      {
+        "model": "GradientBoostingClassifier",
+        "score": 0.7955161369795516,
+        "Accuracy": 0.8048780487804879,
+        "Precision": 0.7991014120667522,
+        "Recall": 0.8048780487804879,
+        "F1": 0.7955161369795516
+      }
+    ],
+    "best_model": "RandomForestClassifier",
+    "best_metrics": {
+      "score": 0.8220933756073155,
+      "Accuracy": 0.8292682926829268,
+      "Precision": 0.825805701197144,
+      "Recall": 0.8292682926829268,
+      "F1": 0.8220933756073155
+    },
+    "features": [
+      "Gender",
+      "Married",
+      "Dependents",
+      "Education",
+      "Self_Employed",
+      "CoapplicantIncome",
+      "LoanAmount",
+      "Loan_Amount_Term",
+      "Credit_History",
+      "Property_Area"
+    ],
+    "feature_schema": [
+      {
+        "name": "Gender",
+        "nullable": true,
+        "sample_values": [
+          "Male",
+          "Male",
+          "Male"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Male",
+        "options": [
+          "Female",
+          "Male"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "Married",
+        "nullable": true,
+        "sample_values": [
+          "No",
+          "Yes",
+          "Yes"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Yes",
+        "options": [
+          "No",
+          "Yes"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "Dependents",
+        "nullable": true,
+        "sample_values": [
+          "0",
+          "1",
+          "0"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "0",
+        "options": [
+          "0",
+          "1",
+          "2",
+          "3+"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "Education",
+        "nullable": false,
+        "sample_values": [
+          "Graduate",
+          "Graduate",
+          "Graduate"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Graduate",
+        "options": [
+          "Graduate",
+          "Not Graduate"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "Self_Employed",
+        "nullable": true,
+        "sample_values": [
+          "No",
+          "No",
+          "Yes"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "No",
+        "options": [
+          "No",
+          "Yes"
+        ],
+        "help": "Choose one of the categories observed during training."
+      },
+      {
+        "name": "CoapplicantIncome",
+        "nullable": false,
+        "sample_values": [
+          "0.0",
+          "1508.0",
+          "0.0"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 1188.5,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "LoanAmount",
+        "nullable": true,
+        "sample_values": [
+          "128.0",
+          "66.0",
+          "120.0"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 128.0,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "Loan_Amount_Term",
+        "nullable": true,
+        "sample_values": [
+          "360.0",
+          "360.0",
+          "360.0"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 360.0,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "Credit_History",
+        "nullable": true,
+        "sample_values": [
+          "1.0",
+          "1.0",
+          "1.0"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 1.0,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "Property_Area",
+        "nullable": false,
+        "sample_values": [
+          "Urban",
+          "Rural",
+          "Urban"
+        ],
+        "kind": "select",
+        "dtype": "category",
+        "default": "Semiurban",
+        "options": [
+          "Rural",
+          "Semiurban",
+          "Urban"
+        ],
+        "help": "Choose one of the categories observed during training."
+      }
+    ],
+    "categorical_options": {
+      "Gender": [
+        "Female",
+        "Male"
+      ],
+      "Married": [
+        "No",
+        "Yes"
+      ],
+      "Dependents": [
+        "0",
+        "1",
+        "2",
+        "3+"
+      ],
+      "Education": [
+        "Graduate",
+        "Not Graduate"
+      ],
+      "Self_Employed": [
+        "No",
+        "Yes"
+      ],
+      "Property_Area": [
+        "Rural",
+        "Semiurban",
+        "Urban"
+      ]
+    },
+    "numeric_columns": [
+      "CoapplicantIncome",
+      "LoanAmount",
+      "Loan_Amount_Term",
+      "Credit_History",
+      "Self_Employed_was_missing",
+      "Credit_History_was_missing"
+    ],
+    "categorical_columns": [
+      "Gender",
+      "Married",
+      "Dependents",
+      "Education",
+      "Self_Employed",
+      "Property_Area"
+    ],
+    "top_features": [
+      {
+        "feature": "LoanAmount",
+        "importance": 0.28098092573303696
+      },
+      {
+        "feature": "Credit_History",
+        "importance": 0.18388965602844218
+      },
+      {
+        "feature": "CoapplicantIncome",
+        "importance": 0.15315376101501163
+      },
+      {
+        "feature": "Loan_Amount_Term",
+        "importance": 0.04793745091462318
+      },
+      {
+        "feature": "Property_Area_Semiurban",
+        "importance": 0.02913860599226549
+      },
+      {
+        "feature": "Dependents_1",
+        "importance": 0.024591346622915643
+      },
+      {
+        "feature": "Property_Area_Rural",
+        "importance": 0.024255905118793747
+      },
+      {
+        "feature": "Dependents_0",
+        "importance": 0.024213288347481775
+      },
+      {
+        "feature": "Credit_History_was_missing",
+        "importance": 0.024076242111243953
+      },
+      {
+        "feature": "Property_Area_Urban",
+        "importance": 0.020000666038393462
+      },
+      {
+        "feature": "Married_Yes",
+        "importance": 0.019344021484672434
+      },
+      {
+        "feature": "Education_Not Graduate",
+        "importance": 0.01895036709793258
+      }
+    ]
+  }
+}

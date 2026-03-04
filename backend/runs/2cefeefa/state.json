@@ -1,0 +1,286 @@
+{
+  "status": "COMPLETED",
+  "meta": {
+    "summary": "The autonomous machine learning workflow successfully completed a binary classification task, identifying the RandomForestClassifier as the best model.",
+    "run_id": "2cefeefa",
+    "target": "Class",
+    "task_type": "classification",
+    "primary_metric": "F1",
+    "score_direction": "maximize",
+    "profile": {
+      "rows": 20000,
+      "columns": 31,
+      "feature_columns": [
+        "Time",
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5",
+        "V6",
+        "V7",
+        "V8",
+        "V9",
+        "V10",
+        "V11",
+        "V12",
+        "V13",
+        "V14",
+        "V15",
+        "V16",
+        "V17",
+        "V18",
+        "V19",
+        "V20",
+        "V21",
+        "V22",
+        "V23",
+        "V24",
+        "V25",
+        "V26",
+        "V27",
+        "V28",
+        "Amount"
+      ],
+      "numeric_columns": [
+        "Time",
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5",
+        "V6",
+        "V7",
+        "V8",
+        "V9",
+        "V10",
+        "V11",
+        "V12",
+        "V13",
+        "V14",
+        "V15",
+        "V16",
+        "V17",
+        "V18",
+        "V19",
+        "V20",
+        "V21",
+        "V22",
+        "V23",
+        "V24",
+        "V25",
+        "V26",
+        "V27",
+        "V28",
+        "Amount"
+      ],
+      "categorical_columns": [],
+      "task_type": "classification",
+      "target_unique_values": 2,
+      "target_missing_rows_removed": 0,
+      "class_distribution": {},
+      "missing_by_column": {},
+      "analysis_summary": "The target variable 'Class' is binary with only two unique values (0 and 1), indicating a classification task. The features are continuous and diverse, which can be effectively utilized to predict the class labels. Given the nature of the target, the F1 score is recommended as it balances precision and recall, especially in cases of class imbalance.",
+      "data_risks": [
+        "Potential class imbalance due to the low mean value of the target variable.",
+        "High cardinality in features may lead to overfitting if not managed properly."
+      ]
+    },
+    "analysis": {
+      "task_type": "classification",
+      "recommended_metric": "F1",
+      "analysis_summary": "The target variable 'Class' is binary with only two unique values (0 and 1), indicating a classification task. The features are continuous and diverse, which can be effectively utilized to predict the class labels. Given the nature of the target, the F1 score is recommended as it balances precision and recall, especially in cases of class imbalance.",
+      "data_risks": [
+        "Potential class imbalance due to the low mean value of the target variable.",
+        "High cardinality in features may lead to overfitting if not managed properly."
+      ],
+      "candidate_models": [
+        "LogisticRegression",
+        "RandomForestClassifier",
+        "GradientBoostingClassifier"
+      ]
+    },
+    "plan": {
+      "task_type": "classification",
+      "date_columns": [],
+      "drop_columns": [
+        "V1",
+        "V2",
+        "V3",
+        "V4",
+        "V5",
+        "V6",
+        "V7",
+        "V8",
+        "V9",
+        "V10",
+        "V11",
+        "V12",
+        "V13",
+        "V14",
+        "V15",
+        "V16",
+        "V17",
+        "V18",
+        "V19",
+        "V20",
+        "V21",
+        "V22",
+        "V23",
+        "V24",
+        "V25",
+        "V26",
+        "V27",
+        "V28"
+      ],
+      "missing_indicator_columns": [],
+      "preprocessing": {
+        "scaling": "standard",
+        "class_weight": "balanced",
+        "stratify_split": true,
+        "reasoning": [
+          "Class weighting is applied to address potential class imbalance.",
+          "Stratified split ensures that both classes are represented in training and testing sets."
+        ]
+      },
+      "feature_engineering_reasoning": [
+        "High cardinality features are dropped to prevent overfitting.",
+        "No date columns are present to expand.",
+        "Dropped V1 because the tool marked it as an identifier-like column.",
+        "Dropped V2 because the tool marked it as an identifier-like column.",
+        "Dropped V3 because the tool marked it as an identifier-like column.",
+        "Dropped V4 because the tool marked it as an identifier-like column.",
+        "Dropped V5 because the tool marked it as an identifier-like column.",
+        "Dropped V6 because the tool marked it as an identifier-like column.",
+        "Dropped V7 because the tool marked it as an identifier-like column.",
+        "Dropped V8 because the tool marked it as an identifier-like column.",
+        "Dropped V9 because the tool marked it as an identifier-like column.",
+        "Dropped V10 because the tool marked it as an identifier-like column.",
+        "Dropped V11 because the tool marked it as an identifier-like column.",
+        "Dropped V12 because the tool marked it as an identifier-like column.",
+        "Dropped V13 because the tool marked it as an identifier-like column.",
+        "Dropped V14 because the tool marked it as an identifier-like column.",
+        "Dropped V15 because the tool marked it as an identifier-like column.",
+        "Dropped V16 because the tool marked it as an identifier-like column.",
+        "Dropped V17 because the tool marked it as an identifier-like column.",
+        "Dropped V18 because the tool marked it as an identifier-like column.",
+        "Dropped V19 because the tool marked it as an identifier-like column.",
+        "Dropped V20 because the tool marked it as an identifier-like column.",
+        "Dropped V21 because the tool marked it as an identifier-like column.",
+        "Dropped V22 because the tool marked it as an identifier-like column.",
+        "Dropped V23 because the tool marked it as an identifier-like column.",
+        "Dropped V24 because the tool marked it as an identifier-like column.",
+        "Dropped V25 because the tool marked it as an identifier-like column.",
+        "Dropped V26 because the tool marked it as an identifier-like column.",
+        "Dropped V27 because the tool marked it as an identifier-like column.",
+        "Dropped V28 because the tool marked it as an identifier-like column."
+      ],
+      "modeling_reasoning": [
+        "Selected models are suitable for binary classification tasks.",
+        "Diverse candidate models allow for comparison of performance."
+      ],
+      "candidate_models": [
+        "LogisticRegression",
+        "RandomForestClassifier",
+        "GradientBoostingClassifier"
+      ],
+      "primary_metric": "F1",
+      "score_direction": "maximize",
+      "trainer_execution_reasoning": [
+        "The task is a binary classification problem, making F1 a suitable primary metric.",
+        "The selected candidate models are appropriate for the classification task and allow for effective performance comparison."
+      ]
+    },
+    "report": {
+      "summary": "The autonomous machine learning workflow successfully completed a binary classification task, identifying the RandomForestClassifier as the best model.",
+      "model_summary": "The RandomForestClassifier achieved the highest F1 score of 0.9974, outperforming other models by effectively balancing precision and recall, which is crucial given the potential class imbalance.",
+      "reasoning_summary": [
+        "Class weighting was applied to address potential class imbalance, enhancing model performance.",
+        "High cardinality features were dropped to prevent overfitting, ensuring a more robust model."
+      ],
+      "caution": "The model may still be susceptible to overfitting if new, unseen data has different characteristics than the training data."
+    },
+    "results": [
+      {
+        "model": "LogisticRegression",
+        "score": 0.8254845539253862,
+        "Accuracy": 0.705,
+        "Precision": 0.9961313123705516,
+        "Recall": 0.705,
+        "F1": 0.8254845539253862
+      },
+      {
+        "model": "RandomForestClassifier",
+        "score": 0.9973757662955086,
+        "Accuracy": 0.99825,
+        "Precision": 0.9965030625,
+        "Recall": 0.99825,
+        "F1": 0.9973757662955086
+      },
+      {
+        "model": "GradientBoostingClassifier",
+        "score": 0.9965,
+        "Accuracy": 0.9965,
+        "Precision": 0.9965,
+        "Recall": 0.9965,
+        "F1": 0.9965
+      }
+    ],
+    "best_model": "RandomForestClassifier",
+    "best_metrics": {
+      "score": 0.9973757662955086,
+      "Accuracy": 0.99825,
+      "Precision": 0.9965030625,
+      "Recall": 0.99825,
+      "F1": 0.9973757662955086
+    },
+    "features": [
+      "Time",
+      "Amount"
+    ],
+    "feature_schema": [
+      {
+        "name": "Time",
+        "nullable": false,
+        "sample_values": [
+          "41505.0",
+          "44261.0",
+          "35484.0"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 84335.5,
+        "help": "Numeric value; median from training data used as default."
+      },
+      {
+        "name": "Amount",
+        "nullable": false,
+        "sample_values": [
+          "364.19",
+          "520.12",
+          "31.0"
+        ],
+        "kind": "number",
+        "dtype": "number",
+        "default": 21.61,
+        "help": "Numeric value; median from training data used as default."
+      }
+    ],
+    "categorical_options": {},
+    "numeric_columns": [
+      "Time",
+      "Amount"
+    ],
+    "categorical_columns": [],
+    "top_features": [
+      {
+        "feature": "Time",
+        "importance": 0.5019858654757838
+      },
+      {
+        "feature": "Amount",
+        "importance": 0.4980141345242162
+      }
+    ]
+  }
+}

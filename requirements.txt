@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+requests
+numpy
+pandas
+scikit-learn
+joblib
+streamlit
+python-multipart
+langgraph
+langchain-openai
+xgboost
+python-dotenv
+matplotlib
+seaborn
